@@ -80,13 +80,13 @@ export default {
         } else {
           await this.$store.dispatch('signup', actionPayload);
         }
+        const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
+        this.$router.replace(redirectUrl);
       } catch (error) {
         this.error =
           error.message || 'Failed to authenticate. Please try again later';
       }
-
       this.isLoading = false;
-      this.$router.replace('/coaches');
     },
     switchAuthMode() {
       if (this.mode === 'login') this.mode = 'signup';
